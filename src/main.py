@@ -1,7 +1,7 @@
-from fastapi import FastAPI, APIRouter
-from fastapi.middleware.cors import CORSMiddleware
 from typing import Callable
 
+from fastapi import APIRouter, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from uvicorn import run
 
 from src.api.endpoint import router
@@ -10,12 +10,7 @@ from src.core.event import event_manager
 
 
 class V4VisionApp:
-    def __init__(
-        self,
-        event_manager: Callable,
-        router: APIRouter,
-        settings: AppSettings
-    ):
+    def __init__(self, event_manager: Callable, router: APIRouter, settings: AppSettings):
         self.__app = FastAPI(lifespan=event_manager, **settings.set_app_attributes)  # type: ignore
         self.__setup_middlewares(settings=settings)
         self.__add_routes(router=router, settings=settings)
@@ -37,11 +32,7 @@ class V4VisionApp:
 
 
 def initialize_application() -> FastAPI:
-    return V4VisionApp(
-        event_manager=event_manager,
-        router=router,
-        settings=settings
-    )()
+    return V4VisionApp(event_manager=event_manager, router=router, settings=settings)()
 
 
 app = initialize_application()
