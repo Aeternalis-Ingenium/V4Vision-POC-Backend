@@ -37,7 +37,7 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@dbef88086f6cef02e264edb7dbf63250c17cef6c
+        uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81
         with:
           images: ${{ env.REGISTRY }}/${{ steps.lower-repo.outputs.repository }}
 
@@ -45,7 +45,7 @@ jobs:
         run: echo "sha_short=$(git rev-parse HEAD | cut -c1-8)" >> $GITHUB_OUTPUT
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@9f6f8c940b91232557f8699b21341a08624a8dce
+        uses: docker/build-push-action@4976231911ebf5f32aad765192d35f942aa48cb8
         with:
           file: ./docker/Dockerfile.prod
           push: true
