@@ -29,9 +29,7 @@ class AppSettings(BaseSettings):
     PORT: int = int(environ["SERVER_PORT"])
     WORKERS: int = int(environ["SERVER_WORKERS"])
     IS_ALLOWED_CREDENTIALS: bool = bool(environ["IS_ALLOWED_CREDENTIALS"])
-    ALLOWED_ORIGIN_LIST: list[str] = [
-        "*"
-    ]
+    ALLOWED_ORIGIN_LIST: list[str] = ["*"]
     ALLOWED_METHOD_LIST: list[str] = [
         environ["METHOD_1"],
         environ["METHOD_2"],
